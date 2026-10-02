@@ -1,0 +1,26 @@
+# Config files with secrets
+config.yaml
+.env
+.env.local
+
+# Python
+*.pyc
+__pycache__/
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+
+# Reports
+incident_report.md
+*.log

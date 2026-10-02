@@ -1,0 +1,28 @@
+# threat-hunter config
+# Copy this to config.yaml and fill in your API keys
+
+splunk:
+  host: "localhost"
+  port: 8089
+  username: "admin"
+  password_env: "SPLUNK_PASSWORD"  # Read from .env
+  status: "no api key"
+
+elasticsearch:
+  host: "localhost"
+  port: 9200
+  username: "elastic"
+  password_env: "ELASTIC_PASSWORD"  # Read from .env
+  status: "no api key"
+
+virustotal:
+  api_key_env: "VIRUSTOTAL_API_KEY"  # Read from .env
+  status: "no api key"
+
+abuseipdb:
+  api_key_env: "ABUSEIPDB_API_KEY"  # Read from .env
+  status: "no api key"
+
+slack:
+  webhook_env: "SLACK_WEBHOOK"  # Read from .env
+  status: "no api key"
