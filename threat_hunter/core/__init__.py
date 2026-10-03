@@ -1,1 +1,1 @@
-ÿþ
+ï»¿"""Core threat hunting engine"""

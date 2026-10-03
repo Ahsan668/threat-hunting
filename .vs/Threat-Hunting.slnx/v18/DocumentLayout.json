@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\ST\\Downloads\\Threat-Hunting\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ST\\Downloads\\Threat-Hunting\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ST\\Downloads\\Threat-Hunting\\threat_hunter\\core\\ioc_parser.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:threat_hunter\\core\\ioc_parser.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ST\\Downloads\\Threat-Hunting\\threat_hunter\\utils.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:threat_hunter\\utils.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ST\\Downloads\\Threat-Hunting\\threat_hunter\\core\\config.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:threat_hunter\\core\\config.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ST\\Downloads\\Threat-Hunting\\.env.example||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -17,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ST\\Downloads\\Threat-Hunting\\setup.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:setup.py||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ST\\Downloads\\Threat-Hunting\\requirements.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:requirements.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,20 +42,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": ".gitignore",
-              "DocumentMoniker": "C:\\Users\\ST\\Downloads\\Threat-Hunting\\.gitignore",
-              "RelativeDocumentMoniker": ".gitignore",
-              "ToolTip": "C:\\Users\\ST\\Downloads\\Threat-Hunting\\.gitignore",
-              "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-10-02T19:57:39.798Z",
+              "DocumentIndex": 1,
+              "Title": "utils.py",
+              "DocumentMoniker": "C:\\Users\\ST\\Downloads\\Threat-Hunting\\threat_hunter\\utils.py",
+              "RelativeDocumentMoniker": "threat_hunter\\utils.py",
+              "ToolTip": "C:\\Users\\ST\\Downloads\\Threat-Hunting\\threat_hunter\\utils.py",
+              "RelativeToolTip": "threat_hunter\\utils.py",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-10-03T20:33:05.867Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "ioc_parser.py",
+              "DocumentMoniker": "C:\\Users\\ST\\Downloads\\Threat-Hunting\\threat_hunter\\core\\ioc_parser.py",
+              "RelativeDocumentMoniker": "threat_hunter\\core\\ioc_parser.py",
+              "ToolTip": "C:\\Users\\ST\\Downloads\\Threat-Hunting\\threat_hunter\\core\\ioc_parser.py",
+              "RelativeToolTip": "threat_hunter\\core\\ioc_parser.py",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAACMAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-10-03T20:32:05.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "config.py",
+              "DocumentMoniker": "C:\\Users\\ST\\Downloads\\Threat-Hunting\\threat_hunter\\core\\config.py",
+              "RelativeDocumentMoniker": "threat_hunter\\core\\config.py",
+              "ToolTip": "C:\\Users\\ST\\Downloads\\Threat-Hunting\\threat_hunter\\core\\config.py",
+              "RelativeToolTip": "threat_hunter\\core\\config.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-10-03T20:28:38.717Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": ".env.example",
               "DocumentMoniker": "C:\\Users\\ST\\Downloads\\Threat-Hunting\\.env.example",
               "RelativeDocumentMoniker": ".env.example",
@@ -64,7 +94,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "setup.py",
               "DocumentMoniker": "C:\\Users\\ST\\Downloads\\Threat-Hunting\\setup.py",
               "RelativeDocumentMoniker": "setup.py",
@@ -77,7 +107,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "config.example.yaml",
               "DocumentMoniker": "C:\\Users\\ST\\Downloads\\Threat-Hunting\\config.example.yaml",
               "RelativeDocumentMoniker": "config.example.yaml",
@@ -87,18 +117,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
               "WhenOpened": "2026-10-02T19:02:56.292Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "requirements.txt",
-              "DocumentMoniker": "C:\\Users\\ST\\Downloads\\Threat-Hunting\\requirements.txt",
-              "RelativeDocumentMoniker": "requirements.txt",
-              "ToolTip": "C:\\Users\\ST\\Downloads\\Threat-Hunting\\requirements.txt",
-              "RelativeToolTip": "requirements.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2026-10-02T19:02:54.324Z"
             }
           ]
         }

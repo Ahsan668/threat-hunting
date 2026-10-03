@@ -4,12 +4,8 @@
     "\\examples",
     "\\tests",
     "\\threat_hunter",
-    "\\threat_hunter\\core",
-    "\\threat_hunter\\generators",
-    "\\threat_hunter\\integrations",
-    "\\threat_hunter\\web",
-    "\\threat_hunter\\web\\static"
+    "\\threat_hunter\\core"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\threat_hunter\\core\\ioc_parser.py",
   "PreviewInSolutionExplorer": false
 }
