@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Threat Hunter - SOC Intelligence Platform</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); background-attachment: fixed; min-height: 100vh; color: #e0e0e0; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
+  .header { text-align: center; margin-bottom: 50px; }
+  .header h1 { font-size: 3em; color: #00d4ff; margin-bottom: 10px; }
+  .header p { color: #00d4ff; font-size: 1.1em; }
+  .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+  @media (max-width: 1024px) { .main-grid { grid-template-columns: 1fr; } }
+  .card { background: rgba(255,255,255,0.05); border: 1px solid rgba(0,212,255,0.2); border-radius: 20px; padding: 30px; margin-bottom: 30px; }
+  .main-grid .card { margin-bottom: 0; }
+  .card h2 { color: #00d4ff; margin-bottom: 20px; font-size: 1.5em; }
+  .form-group { margin-bottom: 20px; }
+  label { display: block; margin-bottom: 8px; color: #00d4ff; font-weight: 600; }
+  textarea, select { width: 100%; padding: 12px 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(0,212,255,0.2); border-radius: 10px; color: #e0e0e0; font-family: 'Courier New', monospace; font-size: 1em; }
+  select option { background: #302b63; }
+  textarea:focus, select:focus { outline: none; border-color: #00d4ff; box-shadow: 0 0 20px rgba(0,212,255,0.3); }
+  .checkbox-group { display: flex; align-items: center; gap: 10px; margin-top: 15px; }
+  .checkbox-group input { width: 20px; height: 20px; accent-color: #00d4ff; cursor: pointer; }
+  .checkbox-group label { margin: 0; color: #e0e0e0; font-weight: normal; }
+  .button-group { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
+  button { padding: 14px 24px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.95em; }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  .btn-hunt { background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%); color: #000; }
+  .btn-report { background: linear-gradient(135deg, #ff006e 0%, #ff4d88 100%); color: #fff; }
+  .status { margin-top: 15px; min-height: 1.4em; font-size: 0.95em; }
+  .status.error { color: #ff6b9d; }
+  .status.ok { color: #7dffb0; }
+  .threat-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; }
+  .stat-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(0,212,255,0.1); border-radius: 10px; padding: 15px; text-align: center; }
+  .stat-number { font-size: 2em; font-weight: 900; color: #00d4ff; margin-bottom: 5px; }
+  .stat-label { font-size: 0.85em; color: #999; }
+  .table-container { overflow-x: auto; border-radius: 15px; border: 1px solid rgba(0,212,255,0.1); }
+  table { width: 100%; border-collapse: collapse; }
+  th { background: rgba(0,212,255,0.1); color: #00d4ff; padding: 16px; text-align: left; border-bottom: 2px solid rgba(0,212,255,0.2); }
+  td { padding: 14px 16px; border-bottom: 1px solid rgba(0,212,255,0.1); font-family: 'Courier New', monospace; }
+  tr:hover td { background: rgba(0,212,255,0.05); }
+  .threat-level { display: inline-block; padding: 4px 12px; border-radius: 5px; font-weight: 700; font-size: 0.8em; }
+  .threat-high { background: rgba(255,0,110,0.3); color: #ff006e; border: 1px solid #ff006e; }
+  .threat-medium { background: rgba(255,200,0,0.3); color: #ffc800; border: 1px solid #ffc800; }
+  .threat-low { background: rgba(0,212,255,0.3); color: #00d4ff; border: 1px solid #00d4ff; }
+  .report-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .report-btn { background: rgba(0,212,255,0.15); border: 1px solid #00d4ff; color: #00d4ff; }
+  .report-btn:hover { background: #00d4ff; color: #000; }
+  .hidden { display: none; }
+  .footer { text-align: center; margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(0,212,255,0.1); color: #777; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>&#9889; THREAT HUNTER</h1>
+    <p>Automated IOC Hunting &amp; Threat Intelligence</p>
+  </div>
+
+  <div class="main-grid">
+    <div class="card">
+      <h2>IOC Input</h2>
+      <div class="form-group">
+        <label for="iocs">Indicators of Compromise (one per line)</label>
+        <textarea id="iocs" rows="8" placeholder="192.168.247.129&#10;24.8.40.184&#10;polaris.fr&#10;attacker@frothly.com"></textarea>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Configuration</h2>
+      <div class="form-group">
+        <label for="siem">SIEM Platform</label>
+        <select id="siem">
+          <option value="splunk">Splunk</option>
+          <option value="elk">Elasticsearch</option>
+        </select>
+      </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="enrich" checked>
+        <label for="enrich">Enrich with Threat Intelligence</label>
+      </div>
+      <div class="button-group">
+        <button id="huntBtn" class="btn-hunt" type="button">Hunt IOCs</button>
+        <button id="reportBtn" class="btn-report" type="button">Generate Report</button>
+      </div>
+      <div id="status" class="status"></div>
+    </div>
+  </div>
+
+  <div id="reportCard" class="card hidden">
+    <h2>Download Report</h2>
+    <p style="color:#999; margin-bottom:15px;">Choose a format for the report of the current hunt results.</p>
+    <div class="report-options">
+      <button class="report-btn" type="button" data-format="json">JSON</button>
+      <button class="report-btn" type="button" data-format="html">HTML</button>
+      <button class="report-btn" type="button" data-format="text">Text</button>
+    </div>
+  </div>
+
+  <div id="results"></div>
+
+  <div class="footer">
+    <p>Threat Hunter v1.0 - SOC Intelligence Platform</p>
+  </div>
+</div>
+
+<script>
+  // NOTE: this script deliberately uses no template literals (backticks)
+  // and no dollar signs, so it cannot be corrupted by PowerShell escaping.
+  var lastHuntData = null;
+
+  function setStatus(msg, kind) {
+    var el = document.getElementById('status');
+    el.textContent = msg || '';
+    el.className = 'status' + (kind ? ' ' + kind : '');
+  }
+
+  function esc(value) {
+    return String(value === undefined || value === null ? '' : value)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function riskOf(hits) {
+    if (hits > 50) return { label: 'High', cls: 'threat-high' };
+    if (hits > 10) return { label: 'Medium', cls: 'threat-medium' };
+    return { label: 'Low', cls: 'threat-low' };
+  }
+
+  function statCard(number, label, color) {
+    return '<div class="stat-card"><div class="stat-number" style="color:' + color + '">' +
+      number + '</div><div class="stat-label">' + label + '</div></div>';
+  }
+
+  async function hunt() {
+    var iocs = document.getElementById('iocs').value
+      .split(/\r?\n/).map(function (x) { return x.trim(); }).filter(Boolean);
+    var siem = document.getElementById('siem').value;
+    var enrich = document.getElementById('enrich').checked;
+
+    if (iocs.length === 0) { setStatus('Enter at least one IOC, one per line.', 'error'); return; }
+
+    var btn = document.getElementById('huntBtn');
+    btn.disabled = true;
+    setStatus('Hunting ' + iocs.length + ' IOC(s)...');
+    document.getElementById('reportCard').classList.add('hidden');
+
+    try {
+      var response = await fetch('/api/hunt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ iocs: iocs, siem: siem, enrich: enrich })
+      });
+      var data = await response.json();
+      if (!response.ok) throw new Error(data.error || ('Server returned ' + response.status));
+      lastHuntData = data;
+      displayResults(data);
+      setStatus('Hunt complete: ' + data.results.length + ' IOC(s) checked.', 'ok');
+    } catch (err) {
+      console.error(err);
+      setStatus('Hunt failed: ' + err.message + ' (check the Flask console)', 'error');
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  function displayResults(data) {
+    var out = document.getElementById('results');
+    var results = data.results || [];
+    if (results.length === 0) {
+      out.innerHTML = '<div class="card"><p>No results returned.</p></div>';
+      return;
+    }
+
+    var high = 0, medium = 0, low = 0, totalHits = 0;
+    var rows = '';
+    results.forEach(function (r) {
+      var hits = Number(r.hits) || 0;
+      totalHits += hits;
+      var risk = riskOf(hits);
+      if (risk.label === 'High') high++; else if (risk.label === 'Medium') medium++; else low++;
+      rows += '<tr><td>' + esc(r.ioc) + '</td><td>' + esc(String(r.ioc_type || 'unknown').toUpperCase()) +
+        '</td><td>' + esc(r.siem) + '</td><td>' + hits +
+        '</td><td><span class="threat-level ' + risk.cls + '">' + risk.label + '</span></td></tr>';
+    });
+
+    var html = '<div class="card"><h2>Hunt Results (' + totalHits + ' total SIEM hits)</h2>' +
+      '<div class="threat-stats">' +
+      statCard(results.length, 'Total IOCs', '#00d4ff') +
+      statCard(high, 'High', '#ff006e') +
+      statCard(medium, 'Medium', '#ffc800') +
+      statCard(low, 'Low', '#00d4ff') +
+      '</div><div class="table-container"><table><thead><tr>' +
+      '<th>IOC</th><th>Type</th><th>SIEM</th><th>Hits</th><th>Risk</th>' +
+      '</tr></thead><tbody>' + rows + '</tbody></table></div></div>';
+
+    var enrichment = data.enrichment_data || [];
+    if (enrichment.length > 0) {
+      var erows = '';
+      enrichment.forEach(function (e) {
+        erows += '<tr><td>' + esc(e.value || e.ioc) + '</td><td>' + esc(e.source || '') +
+          '</td><td>' + esc(e.status || '') + '</td></tr>';
+      });
+      html += '<div class="card"><h2>Threat Intelligence Enrichment</h2>' +
+        '<div class="table-container"><table><thead><tr><th>IOC</th><th>Source</th><th>Status</th>' +
+        '</tr></thead><tbody>' + erows + '</tbody></table></div></div>';
+    }
+
+    out.innerHTML = html;
+  }
+
+  function showReportOptions() {
+    if (!lastHuntData || !lastHuntData.results || lastHuntData.results.length === 0) {
+      setStatus('Run a hunt first, then generate the report.', 'error');
+      return;
+    }
+    var card = document.getElementById('reportCard');
+    card.classList.remove('hidden');
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  async function downloadReport(format) {
+    setStatus('Generating ' + format.toUpperCase() + ' report...');
+    try {
+      var response = await fetch('/api/report', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          format: format,
+          results: lastHuntData.results,
+          enrichment_data: lastHuntData.enrichment_data || []
+        })
+      });
+      if (!response.ok) {
+        var err = await response.json().catch(function () { return {}; });
+        throw new Error(err.error || ('Server returned ' + response.status));
+      }
+      var filename = 'threat_hunt_report.' + (format === 'text' ? 'txt' : format);
+      var disposition = response.headers.get('Content-Disposition') || '';
+      var match = disposition.match(/filename="([^"]+)"/);
+      if (match) filename = match[1];
+
+      var blob = await response.blob();
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      setStatus('Report downloaded: ' + filename, 'ok');
+    } catch (e) {
+      console.error(e);
+      setStatus('Report failed: ' + e.message + ' (check the Flask console)', 'error');
+    }
+  }
+
+  document.getElementById('huntBtn').addEventListener('click', hunt);
+  document.getElementById('reportBtn').addEventListener('click', showReportOptions);
+  document.querySelectorAll('.report-btn').forEach(function (b) {
+    b.addEventListener('click', function () { downloadReport(b.getAttribute('data-format')); });
+  });
+</script>
+</body>
+</html>
